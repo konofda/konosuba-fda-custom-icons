@@ -49,7 +49,8 @@ STORY_STILLS=../OriginalStoryStills_Cropped
 ./2_AddFrame.sh ${STORY_BACKGROUNDS}_Cropped_Downsized ./KonoMiddleFrame.png
 ./3_ConvertToWebp.sh ${STORY_BACKGROUNDS}_Cropped_Downsized_WithFrame 95
 
-# Process story stills: downsize -> add frame -> convert to webp
+# Process story stills: crop -> downsize -> add frame -> convert to webp
+./0_CropStoryStills.sh $STORY_STILLS ./StoryStillCropRects.csv
 ./1_Downsize.sh $STORY_STILLS
 ./2_AddFrame.sh ${STORY_STILLS}_Downsized ./KonoMiddleFrame.png
 ./3_ConvertToWebp.sh ${STORY_STILLS}_Downsized_WithFrame 95
