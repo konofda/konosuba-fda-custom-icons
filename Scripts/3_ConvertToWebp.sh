@@ -1,18 +1,18 @@
 #!/bin/bash
 
-# Check if folder argument is provided
-if [ -z "$1" ]; then
-    echo "Usage: $0 <folder_name> [quality]"
-    echo "Example: $0 temp1 95"
+# Check if required arguments are provided
+if [ $# -lt 2 ]; then
+    echo "Usage: $0 <input_directory> <output_directory> [quality]"
+    echo "Example: $0 input_folder output_folder 95"
     exit 1
 fi
 
-# Set quality (default to 90 if not provided)
-QUALITY=${2:-90}
+# Get input and output directories and remove trailing slashes if present
+INPUT_DIR=${1%/}
+OUTPUT_DIR=${2%/}
 
-# Set input and output directories
-INPUT_DIR="./$1"
-OUTPUT_DIR="./${1}_webp${QUALITY}"
+# Set quality (default to 90 if not provided)
+QUALITY=${3:-90}
 
 # Check if input directory exists
 if [ ! -d "$INPUT_DIR" ]; then

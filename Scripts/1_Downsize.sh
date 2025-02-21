@@ -1,17 +1,15 @@
 #!/bin/bash
 
-# Check if input directory is provided
-if [ $# -lt 1 ]; then
-    echo "❌ Error: Input directory is required"
-    echo "Usage: $0 <input_directory>"
+# Check if required arguments are provided
+if [ $# -lt 2 ]; then
+    echo "❌ Error: Input and output directories are required"
+    echo "Usage: $0 <input_directory> <output_directory>"
     exit 1
 fi
 
-# Get input directory and remove trailing slash if present
+# Get input and output directories and remove trailing slashes if present
 INPUT_DIR=${1%/}
-
-# Create output directory name based on input
-OUTPUT_DIR="${INPUT_DIR}_Downsized"
+OUTPUT_DIR=${2%/}
 
 # Create output directory if it doesn't exist
 echo "📁 Creating output directory: $OUTPUT_DIR"

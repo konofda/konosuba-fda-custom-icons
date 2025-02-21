@@ -40,18 +40,21 @@ Then, run the scripts in the following order:
 ```sh
 # Set source directories for backgrounds and stills
 STORY_BACKGROUNDS=../OriginalStoryBackgrounds
-STORY_STILLS=../OriginalStoryStills_Cropped
+STORY_STILLS=../OriginalStoryStills
 
 # Process story backgrounds: crop -> downsize -> add frame -> convert to webp
 
-./0_CropStoryBackgrounds.sh $STORY_BACKGROUNDS
-./1_Downsize.sh ${STORY_BACKGROUNDS}_Cropped
-./2_AddFrame.sh ${STORY_BACKGROUNDS}_Cropped_Downsized ./KonoMiddleFrame.png
-./3_ConvertToWebp.sh ${STORY_BACKGROUNDS}_Cropped_Downsized_WithFrame 95
+rm -rf ./StoryBackgrounds*
+./Scripts/0_CropStoryBackgrounds.sh $STORY_BACKGROUNDS temp/StoryBackgrounds_Cropped
+./Scripts/1_Downsize.sh temp/StoryBackgrounds_Cropped temp/StoryBackgrounds_Cropped_Downsized
+./Scripts/2_AddFrame.sh temp/StoryBackgrounds_Cropped_Downsized StoryBackgrounds ./Scripts/KonoMiddleFrame.png
+./Scripts/3_ConvertToWebp.sh StoryBackgrounds StoryBackgrounds_webp95 95
 
 # Process story stills: crop -> downsize -> add frame -> convert to webp
-./0_CropStoryStills.sh $STORY_STILLS ./StoryStillCropRects.csv
-./1_Downsize.sh $STORY_STILLS
-./2_AddFrame.sh ${STORY_STILLS}_Downsized ./KonoMiddleFrame.png
-./3_ConvertToWebp.sh ${STORY_STILLS}_Downsized_WithFrame 95
+
+rm -rf ./StoryStills*
+./Scripts/0_CropStoryStills.sh $STORY_STILLS temp/StoryStills_Cropped ./Scripts/StoryStillCropRects.csv
+./Scripts/1_Downsize.sh temp/StoryStills_Cropped temp/StoryStills_Cropped_Downsized
+./Scripts/2_AddFrame.sh temp/StoryStills_Cropped_Downsized StoryStills ./Scripts/KonoMiddleFrame.png
+./Scripts/3_ConvertToWebp.sh StoryStills StoryStills_webp95 95
 ```

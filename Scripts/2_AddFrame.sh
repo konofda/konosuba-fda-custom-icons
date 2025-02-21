@@ -1,18 +1,16 @@
 #!/bin/bash
 
 # Check if required arguments are provided
-if [ $# -lt 2 ]; then
-    echo "❌ Error: Both input directory and frame image are required"
-    echo "Usage: $0 <input_directory> <frame_image>"
+if [ $# -lt 3 ]; then
+    echo "❌ Error: Input directory, output directory, and frame image are required"
+    echo "Usage: $0 <input_directory> <output_directory> <frame_image>"
     exit 1
 fi
 
-# Get input directory and remove trailing slash if present
+# Get input and output directories and remove trailing slashes if present
 INPUT_DIR=${1%/}
-FRAME_IMAGE="$2"
-
-# Create output directory name based on input
-OUTPUT_DIR="${INPUT_DIR}_WithFrame"
+OUTPUT_DIR=${2%/}
+FRAME_IMAGE="$3"
 
 # Create output directory if it doesn't exist
 echo "📁 Creating output directory: $OUTPUT_DIR"
