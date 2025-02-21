@@ -30,10 +30,10 @@ process_image() {
     filename=$(basename "$input_file")
     output_file="$OUTPUT_DIR/$filename"
 
-    # Create a 512x256 black canvas, place the 486x230 image in center without resizing,
+    # Create a 512x256 transparent canvas, place the 486x230 image in center without resizing,
     # then overlay the frame
     convert \
-        -size 512x256 xc:black \
+        -size 512x256 xc:none \
         \( "$input_file" -gravity center \) -geometry +0+0 -composite \
         \( "$FRAME_IMAGE" -geometry +0+0 \) -composite \
         "$output_file"
